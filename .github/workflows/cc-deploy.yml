@@ -1,0 +1,19 @@
+name: shoppingcart
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm install -g yarn
+      - run: yarn rock:format
+      - run: yarn rock:ng:lint
+      - run: yarn rock:prod
